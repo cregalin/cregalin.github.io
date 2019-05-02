@@ -89,7 +89,7 @@ new Vue({
 
 function verificarLogin() {
     if (getCookie('logado') != 'true' && localStorage.getItem('remember') != 'true') {
-        window.location.href = 'login.html'
+        window.location.href = 'index.html'
     }
 }
 
