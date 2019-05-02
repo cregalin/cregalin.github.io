@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1,minimal-ui" name="viewport">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
+    <link rel="stylesheet" href="assets/plugins/vue-material/vue-material.min.css">
+    <link rel="stylesheet" href="assets/plugins/vue-material/theme/default.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+</head>
+
+<body>
+    <div id="app">
+        <template>
+      <div class="centered-container">
+        <form novalidate class="md-layout" @submit.prevent="validateUser">
+          <md-card class="md-layout-item md-size-50 md-small-size-100">
+            <md-card-header>
+              <div class="title"><img src="./assets/img/logo_preto.png"></div>
+            </md-card-header>
+            <md-card-content>
+              <md-field :class="getValidationClass('user')">
+                <label for="first-name">Usuário</label>
+                <md-input name="first-name" id="first-name" autocomplete="given-name" v-model="form.user"
+                  :disabled="sending"></md-input>
+                <span class="md-error" v-if="!$v.form.user.required">Usuário é obrigatório</span>
+              </md-field>
+              <md-field :class="getValidationClass('password')">
+                <label for="last-name">Senha</label>
+                <md-input name="last-name" type="password" id="last-name" autocomplete="family-name"
+                  v-model="form.password" :disabled="sending"></md-input>
+                <span class="md-error" v-if="!$v.form.password.required">Senha é obrigatória</span>
+              </md-field>
+              <label class="container">Lembrar senha
+                <input type="checkbox" id="remember">
+                <span class="checkmark"></span>
+              </label>
+              <span class="md-caption">Essa é uma plataforma de apoio a células
+                em faculdades e escolas. </br>
+                Aqui você pode compartilhar e
+                consultar conteúdos excluisivos
+                para ajudar em sua célula. </br>
+                Crie uma conta e aproveite!
+              </span>
+            </md-card-content>
+            <md-progress-bar md-mode="indeterminate" v-if="sending"> </md-progress-bar>
+            <md-card-actions md-alignment="space-between">
+              <div>
+                <md-button>CRIAR CONTA</md-button>
+              </div>
+              <div>
+                <md-button type="submit" class="md-raised md-accent" :disabled="sending">ENTRAR</md-button>
+              </div>
+            </md-card-actions>
+            <md-snackbar :md-active.sync="userSaved">Usuário {{ lastUser }} logado com sucesso!</md-snackbar>
+          </md-card>
+        </form>
+      </div>
+      
+    </template>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="assets/plugins/vue-material/vue-material.min.js"></script>
+    <script src="assets/plugins/vuelidate/validators.min.js"></script>
+    <script src="assets/plugins/vuelidate/vuelidate.min.js"></script>
+    <script src="assets/js/login.js"></script>
+</body>
+
+</html>
